@@ -4,5 +4,8 @@
 int
 main()
 {
-     kprintf("Hello, World!");
+     kprintf("Hello, World!\n");
+
+     while (true)
+          ;
 }
