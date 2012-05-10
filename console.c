@@ -142,5 +142,5 @@ kprintf(char *string)
 {
      int i = 0;
      while (string[i] != '\0')
-          vgaputc(string[i]);
+          vgaputc(string[i++]);
 }
