@@ -1,4 +1,4 @@
-objects = boot.o main.o console.o
+objects = boot.o console.o main.o string.o
 
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector
 LDFLAGS = -melf_i386 -T link.ld
