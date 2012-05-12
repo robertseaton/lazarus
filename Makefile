@@ -18,12 +18,6 @@ link:
 qemu:
 	qemu-system-i386 -kernel kernel
 
-# tests
+test:
+	make -C tests test
 
-TESTS = console_test
-
-test: $(TESTS)
-
-console_test:
-	$(CC) -o tests/console_test.o -c tests/console_test.c
-	$(CC) -o tests/console_test tests/console_test.o -latf-c
