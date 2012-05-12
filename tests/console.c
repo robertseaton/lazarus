@@ -54,9 +54,32 @@ ATF_TC_BODY(test_getfbsymbol_char, tc)
      ATF_REQUIRE((fbsymbol & 0xFF) == 'c');
 }
 
+ATF_TC(test_writec);
+ATF_TC_HEAD(test_writec, tc)
+{
+     atf_tc_set_md_var(tc, "descr", "Ensure writec() is writing to the framebuffer correctly.");
+}
+ATF_TC_BODY(test_writec, tc)
+{
+     ushort fbsymbol;
+     uchar color;
+     int loc;
+
+     loc = 50;
+     color = getcolor(BLACK, WHITE);
+     fbsymbol = getfbsymbol('j', color);
+
+     fb = malloc(sizeof(fb[0]) * FB_WIDTH * FB_HEIGHT);
+     
+     writec('j', &loc, color);
+     ATF_REQUIRE(fb[50] == fbsymbol);
+     ATF_REQUIRE(loc == 51);
+}
+
 ATF_TP_ADD_TCS(tp)
 {
      ATF_TP_ADD_TC(tp, test_getcolor);
      ATF_TP_ADD_TC(tp, test_getfbsymbol_color);
      ATF_TP_ADD_TC(tp, test_getfbsymbol_char);
+     ATF_TP_ADD_TC(tp, test_writec);
 }
