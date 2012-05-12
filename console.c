@@ -116,6 +116,20 @@ scroll(int *position)
 }
 
 static void
+writec(int c, int *position, uchar color)
+{
+     if (c == BACKSPACE && position > 0)
+          (*position)--;
+     else if (c == '\n')
+          *position = nextline(*position);
+     else
+          fb[(*position)++] = getfbsymbol(c, color);
+
+     if (needscroll(*position))
+          scroll(position);
+}
+
+static void
 vgaputc(int c)
 {
      int position;
@@ -123,17 +137,7 @@ vgaputc(int c)
      
      position = getcursor();
      color = getcolor(WHITE, BLACK);
-     
-     if (c == BACKSPACE && position > 0)
-          position--;
-     else if (c == '\n')
-          position = nextline(position);
-     else
-          fb[position++] = getfbsymbol(c, color);
-
-     if (needscroll(position))
-          scroll(&position);
-
+     writec(c, &position, color);
      movecursor(position);
 }
 
