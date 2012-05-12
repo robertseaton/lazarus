@@ -22,7 +22,24 @@ ATF_TC_BODY(test_getcolor, tc)
      }
 }
 
+ATF_TC(test_getfbsymbol_color);
+ATF_TC_HEAD(test_getfbsymbol_color, tc)
+{
+     atf_tc_set_md_var(tc, "descr", "Ensure getfbsymbol() is setting the color.");
+}
+ATF_TC_BODY(test_getfbsymbol_color, tc)
+{
+     ushort fbsymbol;
+     uchar color;
+     
+     color = getcolor(BLACK, WHITE);
+     fbsymbol = getfbsymbol('c', color);
+
+     ATF_REQUIRE((fbsymbol >> 8) == color);
+}
+
 ATF_TP_ADD_TCS(tp)
 {
      ATF_TP_ADD_TC(tp, test_getcolor);
+     ATF_TP_ADD_TC(tp, test_getfbsymbol_color);
 }
