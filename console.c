@@ -51,7 +51,7 @@ enum charactercodes {
      BACKSPACE = 0x100
 };
 
-static ushort *fb = (ushort *)0xb000;
+static ushort *fb = (ushort *)0xB8000;
 
 static void 
 movecursor(int position)
