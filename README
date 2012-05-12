@@ -1,0 +1,15 @@
+# building
+    prereqs:
+        * a toolchain that can create x86 ELF binaries
+        * nasm (http://www.nasm.us/)
+        * ATF  (http://code.google.com/p/kyua/wiki/ATF)
+
+    $ make
+    $ make test
+
+# running
+    prereqs:
+        * QEMU (http://wiki.qemu.org/Main_Page)
+
+    $ make qemu
+
