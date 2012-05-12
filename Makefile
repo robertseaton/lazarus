@@ -15,9 +15,12 @@ link:
 .s.o:
 	nasm $(ASFLAGS) $<
 
-qemu:
+qemu: kernel
 	qemu-system-i386 -kernel kernel
 
-test:
+gdb: kernel
+	qemu-system-i386 -S -s -kernel kernel
+
+test: kernel
 	make -C tests test
 

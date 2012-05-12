@@ -13,3 +13,10 @@
 
     $ make qemu
 
+# debugging
+  Launch an instance of Lazarus that accepts remote gdb connections:
+    $ make gdb
+
+  To connect:
+    $ cd my-lazarus-checkout
+    $ gdb
