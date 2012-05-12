@@ -4,7 +4,7 @@
 int
 main()
 {
-     kprintf("Hello, World!\n");
+     kprintf("Lazarus v0.01\n");
 
      while (true)
           ;
