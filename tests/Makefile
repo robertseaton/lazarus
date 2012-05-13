@@ -10,6 +10,9 @@ atffile:
 		echo "tp: $$test" >> Atffile;						\
 	done
 
+clean:
+	rm *.o $(TESTS) Attfile
+
 build-tests:
 	for test in $(TESTS); do			\
 		$(CC) -o $$test.o -c $$test.c;		\

@@ -8,7 +8,8 @@ ASFLAGS = -f elf
 	nasm $(ASFLAGS) $<
 
 clean:
-	rm *.o kernel
+	rm *.o kernel; \
+	make -C tests clean
 
 gdb: kernel
 	qemu-system-i386 -S -s -kernel kernel
