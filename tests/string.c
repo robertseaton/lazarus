@@ -26,14 +26,7 @@ ATF_TC_HEAD(test_memset_zero, tc)
 }
 ATF_TC_BODY(test_memset_zero, tc)
 {
-     uchar *x = malloc(20);
-     memset(x, 0, 20);
-     memset(x, 1, 0);
      memset(NULL, 1, 0);
-
-     int i;
-     for (i = 0; i < 20; i++)
-          ATF_REQUIRE(x[i] == 0);
 }
 
 
