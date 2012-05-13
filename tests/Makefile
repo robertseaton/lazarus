@@ -1,14 +1,6 @@
 TEST_SUITE = kernel
 TESTS = console string
 
-test: build-tests atffile run-tests
-
-build-tests:
-	for test in $(TESTS); do			\
-		$(CC) -o $$test.o -c $$test.c;		\
-		$(CC) -o $$test $$test.o -latf-c;	\
-	done
-
 atffile:
 	rm Atffile; 									\
 	echo "Content-Type: application/X-atf-atffile; version=\"1\"" > Atffile;	\
@@ -18,5 +10,13 @@ atffile:
 		echo "tp: $$test" >> Atffile;						\
 	done
 
+build-tests:
+	for test in $(TESTS); do			\
+		$(CC) -o $$test.o -c $$test.c;		\
+		$(CC) -o $$test $$test.o -latf-c;	\
+	done
+
 run-tests:
 	atf-run | atf-report
+
+test: build-tests atffile run-tests

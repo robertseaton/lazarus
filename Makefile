@@ -4,23 +4,22 @@ CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -g -O0 -Wall
 LDFLAGS = -melf_i386 -T link.ld
 ASFLAGS = -f elf
 
-kernel: $(OBJECTS) link
+.s.o:
+	nasm $(ASFLAGS) $<
 
 clean:
 	rm *.o kernel
 
+gdb: kernel
+	qemu-system-i386 -S -s -kernel kernel
+
+kernel: $(OBJECTS) link
+
 link:
 	ld $(LDFLAGS) -o kernel $(OBJECTS)
-
-.s.o:
-	nasm $(ASFLAGS) $<
 
 qemu: kernel
 	qemu-system-i386 -kernel kernel
 
-gdb: kernel
-	qemu-system-i386 -S -s -kernel kernel
-
 test: kernel
 	make -C tests test
-
