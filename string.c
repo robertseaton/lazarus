@@ -6,8 +6,10 @@ memset(void *dst, int c, uint n)
      char *d;
      d = dst;
 
-     while (n-- > 0)
-          *++d = c;
+     while (n-- > 0) {
+          *d = c;
+          d++;
+     }
 
      return dst;
 }
