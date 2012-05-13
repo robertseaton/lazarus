@@ -76,10 +76,21 @@ ATF_TC_BODY(test_memmove_overlap, tc)
           ATF_REQUIRE(x[i + 20] == i);
 }
 
+ATF_TC(test_memmove_zero);
+ATF_TC_HEAD(test_memmove_zero, tc)
+{
+     atf_tc_set_md_var(tc, "descr", "Test memmove() with zero length input.");
+}
+ATF_TC_BODY(test_memmove_zero, tc)
+{
+     memmove(NULL, NULL, 0);
+}
+
 ATF_TP_ADD_TCS(tp)
 {
      ATF_TP_ADD_TC(tp, test_memset);
      ATF_TP_ADD_TC(tp, test_memset_zero);
      ATF_TP_ADD_TC(tp, test_memmove_no_overlap);
      ATF_TP_ADD_TC(tp, test_memmove_overlap);
+     ATF_TP_ADD_TC(tp, test_memmove_zero);
 }
