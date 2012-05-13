@@ -1,5 +1,5 @@
 TEST_SUITE = kernel
-TESTS = console
+TESTS = console string
 
 test: build-tests atffile run-tests
 

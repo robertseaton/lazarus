@@ -3,3 +3,4 @@ kernel
 
 tests/Atffile
 tests/console
+tests/string
