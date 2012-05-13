@@ -35,8 +35,30 @@ ATF_TC_BODY(test_memset_zero, tc)
           ATF_REQUIRE(x[i] == 0);
 }
 
+
+ATF_TC(test_memmove_no_overlap);
+ATF_TC_HEAD(test_memmove_no_overlap, tc)
+{
+     atf_tc_set_md_var(tc, "descr", "Test memmove() with non-overlapping regions.");
+}
+ATF_TC_BODY(test_memmove_no_overlap, tc)
+{
+     uchar *x = malloc(20);
+     uchar *y = malloc(20);
+
+     memset(x, 0, 20);
+     memset(y, 1, 20);
+
+     memmove(y, x, 20);
+
+     int i;
+     for (i = 0; i < 20; i++)
+          ATF_REQUIRE(y[i] == 0);
+}
+
 ATF_TP_ADD_TCS(tp)
 {
      ATF_TP_ADD_TC(tp, test_memset);
      ATF_TP_ADD_TC(tp, test_memset_zero);
+     ATF_TP_ADD_TC(tp, test_memmove_no_overlap);
 }
