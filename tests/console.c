@@ -1,7 +1,6 @@
 #include <atf-c.h>
 
 #include <stdlib.h>
-#include <string.h>
 
 #include "../console.c"
 
